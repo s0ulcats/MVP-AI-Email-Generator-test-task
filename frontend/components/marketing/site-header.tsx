@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Logo } from "@/components/logo"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { useAuth } from "@/providers/auth-provider"
+import { logout } from '@/lib/api/auth'
 import { MobileNav } from "@/components/layout/mobile-nav"
 import { cn } from '@/lib/utils'
 
@@ -51,7 +52,8 @@ export function SiteHeader() {
     .slice(0, 2) || 'JD'
 
   async function handleLogout() {
-    await authLogout()
+    await logout()
+    authLogout()
     window.location.href = '/login'
   }
 

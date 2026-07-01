@@ -8,6 +8,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Logo } from '@/components/logo'
 import { useAuth } from '@/providers/auth-provider'
+import { logout } from '@/lib/api/auth'
 import { cn } from '@/lib/utils'
 
 interface MobileNavProps {
@@ -30,9 +31,15 @@ export function MobileNav({ links }: MobileNavProps) {
   }, [isOpen])
 
   async function handleLogout() {
-    await authLogout()
-    setIsOpen(false)
-    window.location.href = '/login'
+    try {
+      await logout()
+      authLogout()
+      setIsOpen(false)
+      window.location.href = '/login'
+    } catch {
+      setIsOpen(false)
+      window.location.href = '/login'
+    }
   }
 
   const drawer = isOpen ? (

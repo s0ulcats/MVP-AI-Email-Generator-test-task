@@ -26,7 +26,6 @@ export function AppNav() {
   async function handleLogout() {
     try {
       await logout()
-      await authLogout()
       toast.success('Signed out', { description: 'See you next time.' })
       window.location.href = '/login'
     } catch {
