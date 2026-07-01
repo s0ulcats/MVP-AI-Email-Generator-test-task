@@ -19,6 +19,9 @@ FROM node:20-alpine AS production
 
 WORKDIR /app
 
+# Install OpenSSL 1.1 for Prisma compatibility
+RUN apk add --no-cache openssl1.1-compat
+
 COPY package*.json ./
 RUN npm ci --only=production
 
