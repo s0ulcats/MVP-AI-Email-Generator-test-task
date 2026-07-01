@@ -13,7 +13,7 @@ export default function Error({
   reset: () => void
 }) {
   useEffect(() => {
-    console.log("[v0] App error:", error.message)
+    console.log("App error:", error.message)
   }, [error])
 
   return (
