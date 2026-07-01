@@ -14,13 +14,11 @@ COPY src ./src
 RUN npx prisma generate
 RUN npm run build
 
-# Production stage
 FROM node:20-alpine AS production
 
 WORKDIR /app
 
-# Install OpenSSL 1.1 for Prisma compatibility
-RUN apk add --no-cache openssl1.1-compat
+RUN apk add --no-cache openssl1.1
 
 COPY package*.json ./
 RUN npm ci --only=production
