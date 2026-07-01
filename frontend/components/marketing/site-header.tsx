@@ -52,7 +52,7 @@ export function SiteHeader() {
 
   async function handleLogout() {
     await authLogout()
-    router.push('/login')
+    window.location.href = '/login'
   }
 
   return (

@@ -28,7 +28,7 @@ export function AppNav() {
       await logout()
       await authLogout()
       toast.success('Signed out', { description: 'See you next time.' })
-      router.push('/login')
+      window.location.href = '/login'
     } catch {
       toast.error('Logout failed')
     }

@@ -32,6 +32,7 @@ export function MobileNav({ links }: MobileNavProps) {
   async function handleLogout() {
     await authLogout()
     setIsOpen(false)
+    window.location.href = '/login'
   }
 
   const drawer = isOpen ? (

@@ -57,6 +57,7 @@ export function ProfileCard() {
       await logout()
       authLogout()
       toast.success('Signed out', { description: 'See you next time.' })
+      window.location.href = '/login'
     } catch {
       toast.error('Logout failed')
     }
