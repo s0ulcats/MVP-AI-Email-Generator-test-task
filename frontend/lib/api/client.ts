@@ -132,7 +132,9 @@ export async function apiFetch<T>(
       } catch {
         clearTokens()
         const isTest = typeof process !== 'undefined' && process.env.JEST_WORKER_ID !== undefined
-        if (typeof window !== 'undefined' && window.location && !window.location.pathname.startsWith('/login') && !isTest) {
+        const PUBLIC_PATHS = ['/', '/login', '/register', '/pricing']
+        const isPublicPath = typeof window !== 'undefined' && window.location && PUBLIC_PATHS.some(path => window.location.pathname.startsWith(path))
+        if (typeof window !== 'undefined' && window.location && !isPublicPath && !isTest) {
           window.location.href = '/login'
         }
         throw new ApiError(401, 'Authentication failed')
